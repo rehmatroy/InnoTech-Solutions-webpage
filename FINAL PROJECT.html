@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InnoTech Solutions</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Color and Variable Setup */
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #333;
+            --background-color: #f9f9f9;
+            --text-color: #555;
+            --highlight-color: #ffc107;
+        }
+
+        /* Navbar */
+        nav {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--highlight-color);
+        }
+
+        .menu-icon {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            background: var(--primary-color);
+            position: absolute;
+            width: 100%;
+            top: 60px;
+            left: 0;
+        }
+
+        .mobile-menu a {
+            padding: 10px 0;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(to right, #0d6efd, #004cbd);
+            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            line-height: 1.5;
+        }
+
+        .cta-btn {
+            margin-top: 20px;
+            padding: 15px 30px;
+            background-color: #fff;
+            color: var(--primary-color);
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .cta-btn:hover {
+            background-color: var(--highlight-color);
+            color: #fff;
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 2rem;
+            text-align: center;
+            background-color: var(--background-color);
+        }
+
+        .section h2 {
+            color: var(--secondary-color);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section p {
+            color: var(--text-color);
+            line-height: 1.5;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        /* Services */
+        .services, .products, .faq {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .service, .product, .faq-item {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            width: 280px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .service:hover, .product:hover, .faq-item:hover {
+            transform: scale(1.05);
+        }
+
+        .service h3, .product h3, .faq-item h3 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 500px;
+            margin: 2rem auto;
+            text-align: left;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: var(--highlight-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .menu-icon {
+                display: block;
+                color: white;
+            }
+
+            .mobile-menu.show {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .services, .products, .faq {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">InnoTech Solutions</div>
+        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#about" onclick="toggleMenu()">About</a>
+            <a href="#services" onclick="toggleMenu()">Services</a>
+            <a href="#products" onclick="toggleMenu()">Products</a>
+            <a href="#faq" onclick="toggleMenu()">FAQ</a>
+            <a href="#contact" onclick="toggleMenu()">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div>
+            <h1>Innovate with InnoTech Solutions</h1>
+            <p>Transforming ideas into innovative solutions. Discover our services designed to bring your projects to life.</p>
+            <button class="cta-btn" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });">Get Started</button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2>About Us</h2>
+        <p>InnoTech Solutions is dedicated to developing and delivering innovative tech solutions. Our team is committed to helping clients bring their projects to life with cutting-edge technology and expert guidance.</p>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section">
+        <h2>Our Services</h2>
+        <div class="services">
+            <div class="service">
+                <h3>Custom Software Development</h3>
+                <p>We build custom software tailored to your business needs, enhancing efficiency and scalability.</p>
+            </div>
+            <div class="service">
+                <h3>Mobile App Development</h3>
+                <p>Create high-quality, user-friendly mobile applications for both iOS and Android platforms.</p>
+            </div>
+            <div class="service">
+                <h3>Cloud Solutions</h3>
+                <p>Implement cloud solutions to increase accessibility, scalability, and performance across your projects.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="section">
+        <h2>Our Products</h2>
+        <div class="products">
+            <div class="product">
+                <h3>Product One</h3>
+                <p>An innovative product that offers unique solutions to everyday challenges.</p>
+            </div>
+            <div class="product">
+                <h3>Product Two</h3>
+                <p>Designed to enhance productivity and streamline workflows for businesses.</p>
+            </div>
+            <div class="product">
+                <h3>Product Three</h3>
+                <p>A powerful tool that leverages the latest technology for optimal performance.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq">
+            <div class="faq-item">
+                <h3>What services do you offer?</h3>
+                <p>We provide custom software development, mobile app creation, cloud solutions, and more.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How can I start a project with you?</h3>
+                <p>Simply fill out our contact form, and our team will get in touch with you to discuss your project.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What industries do you serve?</h3>
+                <p>We serve a variety of industries, including healthcare, finance, retail, and more.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2>Contact Us</h2>
+        <form class="contact-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <!-- JavaScript for Mobile Menu Toggle -->
+    <script>
+        function toggleMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('show');
+        }
+    </script>
+
+</body>
+</html>
